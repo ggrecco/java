@@ -33,11 +33,13 @@ public class Loja {
     }
     
     public String toString() {
-        String retorno = "PRODUTO: " + this.produto + "\n";
+        String retorno = "\nPRODUTO: " + this.produto + "\n";
         retorno += "QUANTIDADE: " + this.quantidade + "\n";
         retorno += "Valor: "+ this.valor_unitario + "\n";
         retorno += "--------------------------\n";
+
         return retorno;
-            }
-    //tring produto,quantidade, valor_unitario;
+        }
+    
+    
 }

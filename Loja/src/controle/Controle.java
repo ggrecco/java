@@ -37,10 +37,11 @@ public class Controle {
         String exibir = "";
         int i = 1;
         for(Loja l: lojas){
-            System.out.println(i);
-        System.out.println(l);        
-        exibir += l.toString(); 
-        i++;
+            System.out.print(i);
+            System.out.println(l);  
+            exibir += Integer.toString(i);
+            exibir += l.toString();                        
+            i++;
         }        
         return exibir;
      }
