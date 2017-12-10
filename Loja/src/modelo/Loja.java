@@ -37,7 +37,6 @@ public class Loja {
         retorno += "QUANTIDADE: " + this.quantidade + "\n";
         retorno += "Valor: "+ this.valor_unitario + "\n";
         retorno += "--------------------------\n";
-
         return retorno;
         }
     
