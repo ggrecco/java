@@ -1,36 +1,19 @@
+package visao;
 
-package visual;
+import java.util.ArrayList;
+import modelo.Turma;
+import mvc.Control;
+import mvc.Model;
+import mvc.View;
 
-import controle.Controle;
-import modelo.Loja;
+public class Tela extends javax.swing.JFrame implements View {
 
-public class TelaPeca extends javax.swing.JFrame {
+    private Control ctrl;
+    private ArrayList<Turma> turmas = new ArrayList();
     
-    private Controle ctrl;
-   
-    public TelaPeca() {
+    public Tela() {
         initComponents();
-        ctrl = new Controle();
-    }
-    public Loja telaPeca(){
-        String peca = this.jPeca.getText();
-        this.jPeca.setText("");
-        String altura = this.jAltura.getText();
-        this.jAltura.setText("");
-        String largura = this.jLargura.getText();
-        this.jLargura.setText("");
-        String quantidade = this.jQuantidade.getText();
-        this.jQuantidade.setText("");
-        
-        return new Loja(peca,altura,largura,quantidade);
-    }
-    
-    public void pecaTela(Loja l){
-        this.jPeca.setText(l.getPeca());
-        this.jAltura.setText(l.getAltura());
-        this.jLargura.setText(l.getQuantidade());
-        this.jQuantidade.setText(l.getQuantidade());
-        
+        ctrl = new Control(turmas);
     }
 
     /**
@@ -46,28 +29,28 @@ public class TelaPeca extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jNome = new javax.swing.JTextField();
+        jSala = new javax.swing.JTextField();
+        jAndar = new javax.swing.JTextField();
+        jPredio = new javax.swing.JTextField();
         jVoltar = new javax.swing.JButton();
         jAvancar = new javax.swing.JButton();
         jAdicionar = new javax.swing.JButton();
-        jRemover = new javax.swing.JButton();
+        jExcluir = new javax.swing.JButton();
         jEditar = new javax.swing.JButton();
         jPrint = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jAreaTexto = new javax.swing.JTextArea();
-        jLargura = new javax.swing.JTextField();
-        jAltura = new javax.swing.JTextField();
-        jPeca = new javax.swing.JTextField();
-        jQuantidade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Peça:");
+        jLabel1.setText("Nome:");
 
-        jLabel2.setText("Altura:");
+        jLabel2.setText("Sala:");
 
-        jLabel3.setText("Largura:");
+        jLabel3.setText("Andar:");
 
-        jLabel4.setText("Quantidade:");
+        jLabel4.setText("Prédio:");
 
         jVoltar.setText("<");
         jVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,10 +73,10 @@ public class TelaPeca extends javax.swing.JFrame {
             }
         });
 
-        jRemover.setText("-");
-        jRemover.addActionListener(new java.awt.event.ActionListener() {
+        jExcluir.setText("-");
+        jExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRemoverActionPerformed(evt);
+                jExcluirActionPerformed(evt);
             }
         });
 
@@ -104,7 +87,7 @@ public class TelaPeca extends javax.swing.JFrame {
             }
         });
 
-        jPrint.setText("Exibir");
+        jPrint.setText("print");
         jPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPrintActionPerformed(evt);
@@ -122,76 +105,72 @@ public class TelaPeca extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPrint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jAvancar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jAdicionar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPrint)
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSala)
+                            .addComponent(jNome)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jQuantidade))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPeca))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLargura))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jAltura)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jAndar)
+                            .addComponent(jPredio))))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jAdicionar, jAvancar, jEditar, jRemover, jVoltar});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jPeca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                    .addComponent(jNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(jSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLargura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jAndar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPredio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jVoltar)
                     .addComponent(jAvancar)
                     .addComponent(jAdicionar)
-                    .addComponent(jRemover)
-                    .addComponent(jEditar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPrint)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jExcluir)
+                    .addComponent(jEditar)
+                    .addComponent(jPrint))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jAltura, jLargura, jPeca, jQuantidade});
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jAdicionar, jAvancar, jEditar, jRemover, jVoltar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -199,34 +178,34 @@ public class TelaPeca extends javax.swing.JFrame {
     private void jVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVoltarActionPerformed
         // TODO add your handling code here:
         ctrl.voltar();
-        this.pecaTela(ctrl.exibir());
+        this.modelView(ctrl.exibir());
     }//GEN-LAST:event_jVoltarActionPerformed
 
     private void jAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAvancarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         ctrl.avancar();
-        this.pecaTela(ctrl.exibir());
+        this.modelView(ctrl.exibir());
     }//GEN-LAST:event_jAvancarActionPerformed
 
     private void jAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionarActionPerformed
         // TODO add your handling code here:
-        ctrl.cadastrar(this.telaPeca());
+        ctrl.cadastrar(this.viewModel());
     }//GEN-LAST:event_jAdicionarActionPerformed
 
-    private void jRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRemoverActionPerformed
+    private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
         // TODO add your handling code here:
         ctrl.excluir();
-        this.pecaTela(ctrl.exibir());
-    }//GEN-LAST:event_jRemoverActionPerformed
+        ctrl.voltar();
+        this.modelView(ctrl.exibir());
+    }//GEN-LAST:event_jExcluirActionPerformed
 
     private void jEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditarActionPerformed
         // TODO add your handling code here:
-        ctrl.editar(this.telaPeca());
+        ctrl.editar(this.viewModel());
     }//GEN-LAST:event_jEditarActionPerformed
 
     private void jPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPrintActionPerformed
         // TODO add your handling code here:
-        //ctrl.exibir();
         jAreaTexto.setText(ctrl.print());
     }//GEN-LAST:event_jPrintActionPerformed
 
@@ -247,40 +226,59 @@ public class TelaPeca extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPeca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPeca().setVisible(true);
+                new Tela().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAdicionar;
-    private javax.swing.JTextField jAltura;
+    private javax.swing.JTextField jAndar;
     private javax.swing.JTextArea jAreaTexto;
     private javax.swing.JButton jAvancar;
     private javax.swing.JButton jEditar;
+    private javax.swing.JButton jExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jLargura;
-    private javax.swing.JTextField jPeca;
+    private javax.swing.JTextField jNome;
+    private javax.swing.JTextField jPredio;
     private javax.swing.JButton jPrint;
-    private javax.swing.JTextField jQuantidade;
-    private javax.swing.JButton jRemover;
+    private javax.swing.JTextField jSala;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jVoltar;
     // End of variables declaration//GEN-END:variables
+    @Override
+    public void modelView(Model m){
+        Turma t = (Turma)m;
+        this.jNome.setText(t.getNome());
+        this.jSala.setText(t.getSala());
+        this.jAndar.setText(t.getSala());
+        this.jPredio.setText(t.getPredio());
+    }   
+    @Override
+    public Model viewModel() {
+        String nome = jNome.getText();
+        String sala = jSala.getText();
+        String andar = jAndar.getText();
+        String predio = jPredio.getText();
+        
+        return new Turma(nome, sala, andar, predio);
+    }
+
 }
+
