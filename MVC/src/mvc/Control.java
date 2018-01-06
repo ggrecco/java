@@ -42,9 +42,10 @@ private int index = 0;
         int i = 1;
         for(Model f: modelos){
             System.out.println(i);
-        System.out.println(f);        
-        exibir += f.toString(); 
-        i++;
+            System.out.println(f);
+            exibir += Integer.toString(i);
+            exibir += f.toString(); 
+            i++;
         }  
         return exibir;
     }
